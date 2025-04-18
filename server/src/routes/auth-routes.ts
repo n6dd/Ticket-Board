@@ -1,7 +1,10 @@
 import { Router, Request, Response } from 'express';
-import { User } from '../models/user.js';
+import { UserFactory } from '../models/user';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { sequelize } from '../models/index'; // Import sequelize instance
+
+const User = UserFactory(sequelize); // Instantiate the User model
 
 export const login = async (req: Request, res: Response) => {
   try {

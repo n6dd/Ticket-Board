@@ -1,4 +1,5 @@
 import { UserLogin } from "../interfaces/UserLogin";
+import Auth from "../utils/auth";
 
 const login = async (userInfo: UserLogin) => {
   try {
@@ -15,6 +16,8 @@ const login = async (userInfo: UserLogin) => {
     if (!response.ok) {
       throw new Error(result.message || 'Login failed');
     }
+
+    Auth.login(result.token);
 
     return result;  
   } catch (err) {

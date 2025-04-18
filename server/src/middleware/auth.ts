@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken';
 
 interface JwtPayload {
   username: string;
+  id: number;
 }
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-  // TODO: verify the token exists and add the user data to the request object
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
@@ -19,10 +19,11 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
         return res.sendStatus(403); 
       }
 
-      req.user = user as JwtPayload;
+      req.user = user as JwtPayload; 
       return next(); 
     });
   } else {
-    res.sendStatus(401);
+    return res.sendStatus(401); 
   }
 };
+

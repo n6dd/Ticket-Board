@@ -17,7 +17,7 @@ class AuthService {
     console.log("User logged in:", isLoggedIn);
     return isLoggedIn;
   }
-  
+
   isTokenExpired(token: string) {
     if (!token) return true;
 
